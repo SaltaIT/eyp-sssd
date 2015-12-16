@@ -1,0 +1,17 @@
+BASE            <%= @ldap_search_base %>
+URI             <%= @ldap_uri.join(" ") %>
+<% if defined?(@ldap_bind_dn) and defined?(@ldap_bind_dn_password) -%>
+BINDDN          <%= @ldap_bind_dn %>
+BINDPW          <%= @ldap_bind_dn_password %>
+<% end -%>
+DEREF           finding
+REFERRALS       on
+<% if defined?(@ldap_tls_ca_cert) -%>
+TLS_CACERT      /etc/openldap/cacerts/sssd.ca
+<% end -%>
+TLS_REQCERT     <%= @ldap_tls_reqcert %>
+TLS_CACertDIR   /etc/openldap/cacerts
+TIMELIMIT       15
+TIMEOUT         20
+
+SSL             <%= @ssl %>
