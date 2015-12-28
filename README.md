@@ -24,14 +24,11 @@ Setups LDAP authentication, and optionally ssh keys on LDAP and sudo on LDAP
 
 ### What sssd affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+* Manages /etc/nsswitch
 
 ### Setup Requirements **OPTIONAL**
 
-This module requires pluginsync enabled
+This module requires pluginsync enabled and eyp/nsswitch module installed
 
 ### Beginning with sssd
 
@@ -134,7 +131,7 @@ TLS_PROTOCOL_MIN        3.2
 
 
 
-### usuarios
+### users
 
 
 example user
