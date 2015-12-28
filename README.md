@@ -76,8 +76,8 @@ sssd::ldap::ldap_schema: rfc2307
 * *sssd::ldap::ldap_chpass_uri*: OPTIONAL - write queries (chpasswd and alike)
 * *sssd::ldap::ldap_search_base*: search base
 * *sssd::ldap::ldap_group_search_base*: OPTIONAL - search base for LDAP groups
-* *sssd::ldap::ldap_bind_dn*: OPTIONAL -
-* *sssd::ldap::ldap_bind_dn_password*: OPTIONAL -  
+* *sssd::ldap::ldap_bind_dn*: OPTIONAL - bind user
+* *sssd::ldap::ldap_bind_dn_password*: OPTIONAL - bind password 
 * *sssd::ldap::ldap_tls_reqcert*: Specifies what checks to perform on server certificates in a TLS session, if any. It can be specified as one of the following values:
   * *never* = The client will not request or check any server certificate.
   * *allow* = The server certificate is requested. If no certificate is provided, the session proceeds normally. If a bad certificate is provided, it will be ignored and the session proceeds normally.
