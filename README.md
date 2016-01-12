@@ -26,9 +26,9 @@ Setups LDAP authentication, and optionally ssh keys on LDAP and sudo on LDAP
 
 ### What sssd affects
 
-* Manages /etc/nsswitch
+* Manages /etc/nsswitch.conf using **eyp/nsswitch**
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
 This module requires pluginsync enabled and eyp/nsswitch module installed
 
