@@ -28,7 +28,7 @@ Setups LDAP authentication, and optionally ssh keys on LDAP and sudo on LDAP
 
 * Manages /etc/nsswitch
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
 This module requires pluginsync enabled and eyp/nsswitch module installed
 
