@@ -46,7 +46,7 @@ class sssd::ldap(
 	}
 	else
 	{
-		$sudoers_order = [ 'files' ]
+		$nsswitch_opts_sudoers = [ 'files' ]
 	}
 
 	service { 'oddjobd':
