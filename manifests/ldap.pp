@@ -1,7 +1,7 @@
 class sssd::ldap(
       $ldap_uri,
-      $ldap_chpass_uri=undef,
       $ldap_search_base,
+      $ldap_chpass_uri=undef,
       $ldap_group_search_base=undef,
       $ldap_tls_ca_cert = undef,
       $ldap_schema = 'rfc2307bis',
@@ -50,18 +50,18 @@ class sssd::ldap(
   }
 
   service { 'oddjobd':
-    enable  => true,
     ensure  => 'running',
+    enable  => true,
     require => Service['messagebus'],
   }
 
   exec { 'authconfig backup':
-    command => "authconfig --savebackup=$authconfigbackup",
+    command => "authconfig --savebackup=${authconfigbackup}",
     creates => $authconfigbackup,
     require => [ Package[$sssd::packages] ],
   }
 
-  file { "/etc/sssd/sssd.conf":
+  file { '/etc/sssd/sssd.conf':
     ensure  => present,
     owner   => 'root',
     group   => 'root',
@@ -74,7 +74,7 @@ class sssd::ldap(
   if($ldap_tls_ca_cert!=undef)
   {
     exec { 'mkdir openldapcerts':
-      command => "mkdir -p /etc/openldap/cacerts",
+      command => 'mkdir -p /etc/openldap/cacerts',
       require => Exec['authconfig backup'],
     }
 
@@ -100,7 +100,7 @@ class sssd::ldap(
       command      => '/usr/sbin/cacertdir_rehash /etc/openldap/cacerts',
       refreshonly  => true,
       require      => File['/etc/openldap/cacerts/sssd.ca'],
-      before        => Exec['authconfig enablesssd'],
+      before       => Exec['authconfig enablesssd'],
       notify       => Exec['authconfig enablesssd'],
     }
   }
@@ -112,8 +112,8 @@ class sssd::ldap(
   }
 
   class { 'sssd::service':
-    enable  => true,
     ensure  => 'running',
+    enable  => true,
     require => Exec['authconfig enablesssd'],
   }
 

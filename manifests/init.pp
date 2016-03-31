@@ -10,8 +10,8 @@ class sssd () inherits sssd::params {
   }
 
   service { 'messagebus':
-    enable  => true,
     ensure  => 'running',
+    enable  => true,
     require => Package['dbus'],
   }
 
