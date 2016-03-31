@@ -14,5 +14,4 @@ class sssd () inherits sssd::params {
     enable  => true,
     require => Package['dbus'],
   }
-
 }
