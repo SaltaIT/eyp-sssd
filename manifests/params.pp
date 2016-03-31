@@ -8,6 +8,7 @@ class sssd::params {
 			{
 				/^6.*$/:
 				{
+					$packages = [ 'sssd', 'authconfig', 'oddjob-mkhomedir', 'dbus', 'sssd-dbus' ]
 				}
 				default: { fail("Unsupported RHEL/CentOS version! - $::operatingsystemrelease")  }
 			}

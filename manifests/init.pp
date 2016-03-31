@@ -5,15 +5,13 @@ class sssd () inherits sssd::params {
 		path => '/bin:/sbin:/usr/bin:/usr/sbin',
 	}
 
-	$packages = [ 'sssd', 'authconfig', 'oddjob-mkhomedir', 'dbus', 'sssd-dbus' ]
-
-	package { $packages:
+	package { $sssd::params::packages:
 		ensure => 'installed',
 	}
 
 	service { 'messagebus':
 		enable  => true,
-		ensure  => "running",
+		ensure  => 'running',
 		require => Package['dbus'],
 	}
 
