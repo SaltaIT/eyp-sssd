@@ -67,7 +67,7 @@ class sssd::ldap(
 		group   => 'root',
 		mode    => '0600',
 		require => Exec['authconfig backup'],
-		notify  => [Service['sssd'], Exec['authconfig enablesssd']],
+		notify  => [ Class['sssd::service'], Exec['authconfig enablesssd'] ],
 		content => template("${module_name}/sssdconf.erb"),
 	}
 
@@ -111,7 +111,7 @@ class sssd::ldap(
 		refreshonly => true,
 	}
 
-	service { 'sssd':
+	class { 'sssd::service':
 		enable  => true,
 		ensure  => 'running',
 		require => Exec['authconfig enablesssd'],
@@ -125,14 +125,14 @@ class sssd::ldap(
 		group    => [ 'files', 'sss' ],
 		#gshadow => [ 'files', 'sss' ],
 		sudoers  => $nsswitch_opts_sudoers,
-		notify   => Service['sssd'],
+		notify   => Class['sssd::service'],
 	}
 
 	if($sshkeys)
 	{
 		package { 'openssh-ldap':
 			ensure => 'installed',
-			before => Service['sssd'],
+			before => Class['sssd::service'],
 		}
 
 		file { '/etc/ssh/ldap.conf':
@@ -141,8 +141,8 @@ class sssd::ldap(
 			mode    => '0640',
 			content => template("${module_name}/ldap-sshkeys.erb"),
 			require => Package['openssh-ldap'],
-			notify  => Service['sssd'],
-			before  => Service['sssd'],
+			notify  => Class['sssd::service'],
+			before  => Class['sssd::service'],
 		}
 	}
 }
