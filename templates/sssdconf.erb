@@ -29,13 +29,13 @@ ldap_search_base = <%= @ldap_search_base %>
 ldap_group_search_base = <%= @ldap_group_search_base %>
 <% end -%>
 ldap_group_member = <%= @ldap_group_member %>
-ldap_id_use_start_tls = False
+ldap_id_use_start_tls = false
 ldap_uri = <%= @ldap_uri.join(",") %>
 <% if defined?(@ldap_chpass_uri) -%>
 ldap_chpass_uri = <%= @ldap_chpass_uri.join(",") %>
 <% end -%>
 krb5_server = kerberos.example.com
-cache_credentials = True
+cache_credentials = true
 <% if defined?(@ldap_tls_ca_cert) -%>
 ldap_tls_cacertdir = /etc/openldap/cacerts
 #ldap_tls_ca_cert = /etc/openldap/cacerts/sssd.ca
