@@ -21,6 +21,10 @@ class sssd::ldap(
       $sudoers_order = [ 'files', 'sss' ],
       $ssl='yes',
       $cache_credentials=true,
+      $ldap_enumeration_search_timeout='60',
+      $ldap_network_timeout='3',
+      $enumerate=true,
+      $ldap_id_use_start_tls=false,
     ) inherits sssd::params
 {
   Exec {
