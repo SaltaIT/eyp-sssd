@@ -124,11 +124,11 @@ class sssd::ldap(
     }
 
     exec { 'cacertdir rehash':
-      command      => '/usr/sbin/cacertdir_rehash /etc/openldap/cacerts',
-      refreshonly  => true,
-      require      => File['/etc/openldap/cacerts/sssd.ca'],
-      before       => Exec['authconfig enablesssd'],
-      notify       => Exec['authconfig enablesssd'],
+      command     => '/usr/sbin/cacertdir_rehash /etc/openldap/cacerts',
+      refreshonly => true,
+      require     => File['/etc/openldap/cacerts/sssd.ca'],
+      before      => Exec['authconfig enablesssd'],
+      notify      => Exec['authconfig enablesssd'],
     }
   }
 
@@ -145,14 +145,14 @@ class sssd::ldap(
   }
 
   #passwd shadow group
+  #gshadow => [ 'files', 'sss' ],
 
   class { 'nsswitch':
-    passwd   => [ 'files', 'sss' ],
-    shadow   => [ 'files', 'sss' ],
-    group    => [ 'files', 'sss' ],
-    #gshadow => [ 'files', 'sss' ],
-    sudoers  => $nsswitch_opts_sudoers,
-    notify   => Class['sssd::service'],
+    passwd  => [ 'files', 'sss' ],
+    shadow  => [ 'files', 'sss' ],
+    group   => [ 'files', 'sss' ],
+    sudoers => $nsswitch_opts_sudoers,
+    notify  => Class['sssd::service'],
   }
 
   if($sshkeys)

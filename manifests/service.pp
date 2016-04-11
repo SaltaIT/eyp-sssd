@@ -20,8 +20,8 @@ class sssd::service (
     if($manage_service)
     {
       service { 'sssd':
-        ensure  => $ensure,
-        enable  => $enable,
+        ensure => $ensure,
+        enable => $enable,
       }
     }
   }
