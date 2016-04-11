@@ -1,5 +1,6 @@
 class sssd::ldap(
       $ldap_uri,
+      $ldap_backup_uri=undef,
       $ldap_search_base,
       $ldap_chpass_uri=undef,
       $ldap_group_search_base=undef,
@@ -29,6 +30,11 @@ class sssd::ldap(
   if($ldap_chpass_uri)
   {
     validate_array($ldap_chpass_uri)
+  }
+
+  if($ldap_backup_uri)
+  {
+    validate_array($ldap_backup_uri)
   }
 
   if($ldap_tls_ca_cert==undef) and ($ldap_tls_reqcert=='demand')

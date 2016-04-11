@@ -31,6 +31,9 @@ ldap_group_search_base = <%= @ldap_group_search_base %>
 ldap_group_member = <%= @ldap_group_member %>
 ldap_id_use_start_tls = false
 ldap_uri = <%= @ldap_uri.join(",") %>
+<% if defined?(@ldap_backup_uri) -%>
+ldap_chpass_uri = <%= @ldap_backup_uri.join(",") %>
+<% end -%>
 <% if defined?(@ldap_chpass_uri) -%>
 ldap_chpass_uri = <%= @ldap_chpass_uri.join(",") %>
 <% end -%>
