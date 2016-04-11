@@ -27,12 +27,12 @@ class sssd::ldap(
 
   validate_array($ldap_uri)
 
-  if($ldap_chpass_uri)
+  if($ldap_chpass_uri!=undef)
   {
     validate_array($ldap_chpass_uri)
   }
 
-  if($ldap_backup_uri)
+  if($ldap_backup_uri!=undef)
   {
     validate_array($ldap_backup_uri)
   }
