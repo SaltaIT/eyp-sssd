@@ -9,7 +9,8 @@
   "issues_url": null,
   "dependencies": [
     {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0"},
-    {"version_requirement":">= 0.1.0","name":"eyp/nsswitch"}
+    {"version_requirement":">= 0.1.0","name":"eyp/nsswitch"},
+    {"name":"eyp/eyplib","version_requirement":">= 0.1.0 < 0.2.0"}
   ],
   "operatingsystem_support": [
     {

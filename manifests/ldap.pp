@@ -1,8 +1,9 @@
 class sssd::ldap(
-      $ldap_uri,
+      $ldap_uri=undef,
       $ldap_backup_uri=undef,
-      $ldap_search_base,
+      $ldap_search_base=undef,
       $ldap_chpass_uri=undef,
+      $ldap_chpass_backup_uri=undef,
       $ldap_group_search_base=undef,
       $ldap_tls_ca_cert = undef,
       $ldap_schema = 'rfc2307bis',
@@ -19,10 +20,21 @@ class sssd::ldap(
       $sudoldap=true,
       $sudoers_order = [ 'files', 'sss' ],
       $ssl='yes',
+      $cache_credentials=true,
     ) inherits sssd::params
 {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
+  }
+
+  if($ldap_uri==undef)
+  {
+    fail('undefined ldap_uri')
+  }
+
+  if($ldap_search_base==undef)
+  {
+    fail('undefined ldap_search_base')
   }
 
   validate_array($ldap_uri)
@@ -30,6 +42,11 @@ class sssd::ldap(
   if($ldap_chpass_uri!=undef)
   {
     validate_array($ldap_chpass_uri)
+  }
+
+  if($ldap_chpass_backup_uri!=undef)
+  {
+    validate_array($ldap_chpass_backup_uri)
   }
 
   if($ldap_backup_uri!=undef)
