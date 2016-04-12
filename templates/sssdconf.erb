@@ -30,7 +30,7 @@ ldap_search_base = <%= @ldap_search_base %>
 ldap_group_search_base = <%= @ldap_group_search_base %>
 <% end -%>
 ldap_group_member = <%= @ldap_group_member %>
-ldap_id_use_start_tls = <%= scope.function_bool2yesno([@ldap_id_use_start_tls]) %>
+ldap_id_use_start_tls = <%= @ldap_id_use_start_tls %>
 ldap_uri = <%= @ldap_uri.join(",") %>
 <% if defined?(@ldap_backup_uri) -%>
 ldap_backup_uri = <%= @ldap_backup_uri.join(",") %>
@@ -41,7 +41,7 @@ ldap_chpass_uri = <%= @ldap_chpass_uri.join(",") %>
 <% if defined?(@ldap_chpass_backup_uri) -%>
 ldap_chpass_backup_uri = <%= @ldap_chpass_backup_uri.join(",") %>
 <% end -%>
-cache_credentials = <%= scope.function_bool2yesno([@cache_credentials]) %>
+cache_credentials = <%= @cache_credentials %>
 <% if defined?(@ldap_tls_ca_cert) -%>
 ldap_tls_cacertdir = /etc/openldap/cacerts
 #ldap_tls_ca_cert = /etc/openldap/cacerts/sssd.ca
@@ -49,7 +49,7 @@ ldap_tls_cacertdir = /etc/openldap/cacerts
 ldap_tls_reqcert = <%= @ldap_tls_reqcert %>
 <% if defined?(@ldap_access_filter) -%>
 ldap_access_filter = <%= @ldap_access_filter %>
-enumerate = <%= scope.function_bool2yesno([@enumerate]) %>
+enumerate = <%= @enumerate %>
 <% end -%>
 <% if defined?(@ldap_bind_dn) and defined?(@ldap_bind_dn_password) -%>
 ldap_default_bind_dn = <%= @ldap_bind_dn %>
