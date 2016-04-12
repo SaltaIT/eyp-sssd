@@ -1,3 +1,7 @@
+#
+# puppet managed file
+#
+
 [sssd]
 config_file_version = 2
 services = nss, pam <% if @sudoldap %>, sudo<% end %>
