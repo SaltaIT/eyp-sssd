@@ -1,7 +1,9 @@
 class sssd::ldap(
-      $ldap_uri,
-      $ldap_search_base,
+      $ldap_uri=undef,
+      $ldap_backup_uri=undef,
+      $ldap_search_base=undef,
       $ldap_chpass_uri=undef,
+      $ldap_chpass_backup_uri=undef,
       $ldap_group_search_base=undef,
       $ldap_tls_ca_cert = undef,
       $ldap_schema = 'rfc2307bis',
@@ -18,17 +20,42 @@ class sssd::ldap(
       $sudoldap=true,
       $sudoers_order = [ 'files', 'sss' ],
       $ssl='yes',
+      $cache_credentials=true,
+      $ldap_enumeration_search_timeout='60',
+      $ldap_network_timeout='3',
+      $enumerate=true,
+      $ldap_id_use_start_tls=false,
     ) inherits sssd::params
 {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
   }
 
+  if($ldap_uri==undef)
+  {
+    fail('undefined ldap_uri')
+  }
+
+  if($ldap_search_base==undef)
+  {
+    fail('undefined ldap_search_base')
+  }
+
   validate_array($ldap_uri)
 
-  if($ldap_chpass_uri)
+  if($ldap_chpass_uri!=undef)
   {
     validate_array($ldap_chpass_uri)
+  }
+
+  if($ldap_chpass_backup_uri!=undef)
+  {
+    validate_array($ldap_chpass_backup_uri)
+  }
+
+  if($ldap_backup_uri!=undef)
+  {
+    validate_array($ldap_backup_uri)
   }
 
   if($ldap_tls_ca_cert==undef) and ($ldap_tls_reqcert=='demand')
@@ -97,11 +124,11 @@ class sssd::ldap(
     }
 
     exec { 'cacertdir rehash':
-      command      => '/usr/sbin/cacertdir_rehash /etc/openldap/cacerts',
-      refreshonly  => true,
-      require      => File['/etc/openldap/cacerts/sssd.ca'],
-      before       => Exec['authconfig enablesssd'],
-      notify       => Exec['authconfig enablesssd'],
+      command     => '/usr/sbin/cacertdir_rehash /etc/openldap/cacerts',
+      refreshonly => true,
+      require     => File['/etc/openldap/cacerts/sssd.ca'],
+      before      => Exec['authconfig enablesssd'],
+      notify      => Exec['authconfig enablesssd'],
     }
   }
 
@@ -118,14 +145,14 @@ class sssd::ldap(
   }
 
   #passwd shadow group
+  #gshadow => [ 'files', 'sss' ],
 
   class { 'nsswitch':
-    passwd   => [ 'files', 'sss' ],
-    shadow   => [ 'files', 'sss' ],
-    group    => [ 'files', 'sss' ],
-    #gshadow => [ 'files', 'sss' ],
-    sudoers  => $nsswitch_opts_sudoers,
-    notify   => Class['sssd::service'],
+    passwd  => [ 'files', 'sss' ],
+    shadow  => [ 'files', 'sss' ],
+    group   => [ 'files', 'sss' ],
+    sudoers => $nsswitch_opts_sudoers,
+    notify  => Class['sssd::service'],
   }
 
   if($sshkeys)

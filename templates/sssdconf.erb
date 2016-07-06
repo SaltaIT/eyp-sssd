@@ -1,3 +1,7 @@
+#
+# puppet managed file
+#
+
 [sssd]
 config_file_version = 2
 services = nss, pam <% if @sudoldap %>, sudo<% end %>
@@ -22,33 +26,40 @@ sudo_provider = ldap
 <% end -%>
 
 
-ldap_schema = <%= @ldap_schema %>
 krb5_realm = EXAMPLE.COM
+krb5_server = kerberos.example.com
+ldap_schema = <%= @ldap_schema %>
 ldap_search_base = <%= @ldap_search_base %>
 <% if defined?(@ldap_group_search_base) -%>
 ldap_group_search_base = <%= @ldap_group_search_base %>
 <% end -%>
 ldap_group_member = <%= @ldap_group_member %>
-ldap_id_use_start_tls = false
+ldap_id_use_start_tls = <%= @ldap_id_use_start_tls %>
 ldap_uri = <%= @ldap_uri.join(",") %>
+<% if defined?(@ldap_backup_uri) -%>
+ldap_backup_uri = <%= @ldap_backup_uri.join(",") %>
+<% end -%>
 <% if defined?(@ldap_chpass_uri) -%>
 ldap_chpass_uri = <%= @ldap_chpass_uri.join(",") %>
 <% end -%>
-krb5_server = kerberos.example.com
-cache_credentials = true
+<% if defined?(@ldap_chpass_backup_uri) -%>
+ldap_chpass_backup_uri = <%= @ldap_chpass_backup_uri.join(",") %>
+<% end -%>
+cache_credentials = <%= @cache_credentials %>
 <% if defined?(@ldap_tls_ca_cert) -%>
 ldap_tls_cacertdir = /etc/openldap/cacerts
 #ldap_tls_ca_cert = /etc/openldap/cacerts/sssd.ca
 <% end -%>
 ldap_tls_reqcert = <%= @ldap_tls_reqcert %>
-entry_cache_timeout = 600
-ldap_network_timeout = 3
 <% if defined?(@ldap_access_filter) -%>
 ldap_access_filter = <%= @ldap_access_filter %>
-enumerate = true
+enumerate = <%= @enumerate %>
 <% end -%>
 <% if defined?(@ldap_bind_dn) and defined?(@ldap_bind_dn_password) -%>
 ldap_default_bind_dn = <%= @ldap_bind_dn %>
 ldap_default_authtok_type = password
 ldap_default_authtok = <%= @ldap_bind_dn_password %>
 <% end -%>
+ldap_enumeration_search_timeout = <%= @ldap_enumeration_search_timeout %>
+entry_cache_timeout = 600
+ldap_network_timeout = <%= @ldap_network_timeout %>

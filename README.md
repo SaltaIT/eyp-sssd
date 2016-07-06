@@ -78,6 +78,8 @@ sssd::ldap::ldap_schema: rfc2307
 
 * *sssd::ldap::ldap_uri*: read-only queries
 * *sssd::ldap::ldap_chpass_uri*: OPTIONAL - write queries (chpasswd and alike)
+* *sssd::ldap::ldap_backup_uri*: backup read-only queries
+* *sssd::ldap::ldap_chpass_backup_uri*: OPTIONAL - backup write queries (chpasswd and alike)
 * *sssd::ldap::ldap_search_base*: search base
 * *sssd::ldap::ldap_group_search_base*: OPTIONAL - search base for LDAP groups
 * *sssd::ldap::ldap_bind_dn*: OPTIONAL - bind user
@@ -89,6 +91,11 @@ sssd::ldap::ldap_schema: rfc2307
   * *demand* (default) = The server certificate is requested. If no certificate is provided, or a bad certificate is provided, the session is immediately terminated.
 * *sssd::ldap::sshkeys*: Enable LDAP stored ssh keys (default: true)
 * *sssd::ldap::sudoldap*: Enable LDAP stored sudoers (default: true)
+* *sssd::ldap::cache_credentials*: Determines if user credentials are also cached in the local LDB cache. User credentials are stored in a SHA512 hash, not in plaintext (default: true)
+* *sssd::ldap::ldap_enumeration_search_timeout*: (default: 60)
+* *sssd::ldap::ldap_network_timeout*: Specifies the timeout (in seconds) that ldap searches for user and group enumerations are allowed to run before they are cancelled and cached results are returned (default: 3)
+* *sssd::ldap::enumerate*: Determines if a domain can be enumerated (default: true)
+* *sssd::ldap::ldap_id_use_start_tls*: Specifies that the id_provider connection must also use tls to protect the channel. (default: false)
 
 
 ## Reference
