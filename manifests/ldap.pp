@@ -1,3 +1,5 @@
+# $ldap_access_filter = memberOf=cn=...
+# $ldap_access_filter = (|(memberOf=cn=...)(memberOf=cn=...)...)
 class sssd::ldap(
       $ldap_uri=undef,
       $ldap_backup_uri=undef,
@@ -9,22 +11,21 @@ class sssd::ldap(
       $ldap_schema = 'rfc2307bis',
       $ldap_tls_reqcert = 'demand',
       $ldap_group_member = 'member',
-      #$ldap_access_filter = memberOf=cn=...
-      #$ldap_access_filter = (|(memberOf=cn=...)(memberOf=cn=...)...)
-      $ldap_access_filter=undef,
-      $ldap_bind_dn=undef,
-      $ldap_bind_dn_password=undef,
-      $authconfigbackup='/var/tmp/puppet.authconfig.ldap.backup',
+      $ldap_access_filter = undef,
+      $ldap_bind_dn = undef,
+      $ldap_bind_dn_password = undef,
+      $authconfigbackup = '/var/tmp/puppet.authconfig.ldap.backup',
       $filter_users = [ 'root','ldap','named','avahi','haldaemon','dbus','news','nscd' ],
-      $sshkeys=true,
-      $sudoldap=true,
+      $filter_groups = [ 'root' ],
+      $sshkeys = true,
+      $sudoldap = true,
       $sudoers_order = [ 'files', 'sss' ],
-      $ssl='yes',
-      $cache_credentials=true,
-      $ldap_enumeration_search_timeout='60',
-      $ldap_network_timeout='3',
-      $enumerate=true,
-      $ldap_id_use_start_tls=false,
+      $ssl = 'yes',
+      $cache_credentials = true,
+      $ldap_enumeration_search_timeout = '60',
+      $ldap_network_timeout = '3',
+      $enumerate = true,
+      $ldap_id_use_start_tls = false,
     ) inherits sssd::params
 {
   Exec {
