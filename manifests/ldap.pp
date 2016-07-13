@@ -96,7 +96,7 @@ class sssd::ldap(
     mode    => '0600',
     require => Exec['authconfig backup'],
     notify  => [ Class['sssd::service'], Exec['authconfig enablesssd'] ],
-    content => template("${module_name}/sssdconf.erb"),
+    content => template("${module_name}/sssdconf-ldap.erb"),
   }
 
   if($ldap_tls_ca_cert!=undef)
