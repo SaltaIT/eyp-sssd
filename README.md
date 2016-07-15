@@ -1,6 +1,6 @@
 # sssd
 
-[![PRs Welcome](https://img.shields.io/badge/prs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![PRs Welcome](https://img.shields.io/badge/prs-welcome-brightgreen.svg)]
 
 #### Table of Contents
 
