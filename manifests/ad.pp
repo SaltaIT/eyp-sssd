@@ -1,8 +1,8 @@
 class sssd::ad(
                 $filter_users  = [ 'root', 'ldap', 'named', 'avahi', 'haldaemon', 'dbus', 'news', 'nscd' ],
                 $filter_groups = [ 'root' ],
-                $ad_domain     = 'domain',
-                $krb5_realm    = 'domain',
+                $ad_domain     = 'example.com',
+                $krb5_realm    = 'EXAMPLE.COM',
               ) inherits sssd::params {
 
   Exec {

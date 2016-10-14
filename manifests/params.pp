@@ -9,7 +9,8 @@ class sssd::params {
         /^6.*$/:
         {
           $packages = [ 'sssd', 'sssd-tools', 'authconfig', 'oddjob-mkhomedir', 'dbus', 'sssd-dbus' ]
-          $packages_ad = [ 'adcli', 'krb5-workstation' ]
+          $packages_ad = [ 'adcli' ]
+          $packages_krb5 = [ 'krb5-workstation' ]
         }
         default: { fail("Unsupported RHEL/CentOS version! - ${::operatingsystemrelease}")  }
       }

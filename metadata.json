@@ -1,8 +1,8 @@
 {
   "name": "eyp-sssd",
-  "version": "0.1.54",
+  "version": "0.2.1",
   "author": "eyp",
-  "summary": "manages sssd for ldap authentication (so far)",
+  "summary": "manages sssd for ldap and AD authentication",
   "license": "Apache-2.0",
   "source": "",
   "project_page": "http://systemadmin.es",
