@@ -24,7 +24,7 @@ class sssd::ad(
     mode    => '0600',
     require => Class['sssd::authconfig::backup'],
     notify  => [ Class['sssd::service'], Class['sssd::authconfig::enable'] ],
-    content => template("${module_name}/sssdconf-ldap.erb"),
+    content => template("${module_name}/sssdconf-ad.erb"),
   }
 
   class { 'sssd::service':
