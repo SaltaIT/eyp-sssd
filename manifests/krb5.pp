@@ -7,6 +7,9 @@ class sssd::krb5(
                   $service_enable        = true,
                   $dns_lookup_realm      = true,
                   $dns_lookup_kdc        = true,
+                  $realm                 = 'EXAMPLE.COM',
+                  $kdc                   = 'kerberos.example.com',
+                  $admin_server          = 'kerberos.example.com',
                 ) inherits sssd::params {
 
   class { '::sssd::krb5::install': } ->

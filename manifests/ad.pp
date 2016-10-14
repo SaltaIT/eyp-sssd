@@ -3,6 +3,8 @@ class sssd::ad(
                 $filter_groups = [ 'root' ],
                 $ad_domain     = 'example.com',
                 $krb5_realm    = 'EXAMPLE.COM',
+                $kdc           = 'kerberos.example.com',
+                $admin_server  = 'kerberos.example.com',
               ) inherits sssd::params {
 
   Exec {
@@ -42,6 +44,13 @@ class sssd::ad(
 
   class { 'sssd::authconfig::enable':
     require => [ Class['sssd::oddjob::service'], File['/etc/sssd/sssd.conf'] ],
+  }
+
+  class { 'sssd::krb5':
+    realm        => $krb5_realm,
+    kdc          => $kdc,
+    admin_server => $admin_server,
+    require      => '/etc/sssd/sssd.conf',
   }
 
 

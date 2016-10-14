@@ -8,7 +8,7 @@
  admin_server = FILE:/var/log/kadmind.log
 
 [libdefaults]
- default_realm = EXAMPLE.COM
+ default_realm = <%= @realm %>
  dns_lookup_realm = <%= @dns_lookup_realm %>
  dns_lookup_kdc = <%= @dns_lookup_kdc %>
  ticket_lifetime = 24h
@@ -16,11 +16,11 @@
  forwardable = true
 
 [realms]
- EXAMPLE.COM = {
+ <%= @realm %> = {
   kdc = kerberos.example.com
   admin_server = kerberos.example.com
  }
 
 [domain_realm]
- .example.com = EXAMPLE.COM
- example.com = EXAMPLE.COM
+ .example.com = <%= @realm %>
+ example.com = <%= @realm %>
