@@ -50,7 +50,8 @@ class sssd::ad(
     realm        => $krb5_realm,
     kdc          => $kdc,
     admin_server => $admin_server,
-    require      => '/etc/sssd/sssd.conf',
+    require      => File['/etc/sssd/sssd.conf'],
+    notify       => Class['sssd::service'],
   }
 
 

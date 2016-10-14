@@ -1,4 +1,4 @@
-class ssssd::krb5::config inherits krb5 {
+class sssd::krb5::config inherits krb5 {
 
   file { '/etc/krb5.conf':
     ensure  => 'present',

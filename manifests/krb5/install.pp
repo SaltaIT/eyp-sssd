@@ -1,4 +1,4 @@
-class ssssd::krb5::install inherits krb5 {
+class sssd::krb5::install inherits krb5 {
 
   if($sssd::krb5::manage_package)
   {
