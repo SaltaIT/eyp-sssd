@@ -9,7 +9,7 @@ class sssd::ad(
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
   }
 
-  packages { $sssd::params::packages_ad:
+  package { $sssd::params::packages_ad:
     ensure => 'installed',
   }
 
