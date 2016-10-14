@@ -102,6 +102,19 @@ sssd::ldap::ldap_schema: rfc2307
 
 ## Reference
 
+### classes
+
+#### sssd::ldap
+
+**WARNING**: rewrite in progress, untested
+
+#### sssd::authconfig::enable
+
+* **mkhomedir** = true,
+* **sssd** = true,
+* **sssdauth** = true,
+* **locauthorize**:  local authorization is sufficient for local users (default: true)
+
 ### howto
 
 See also http://systemadmin.es/tag/sssd

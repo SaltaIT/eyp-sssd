@@ -14,4 +14,8 @@ class sssd () inherits sssd::params {
     enable  => true,
     require => Package['dbus'],
   }
+
+  class { 'sssd::oddjob::service':
+    require => Package[$sssd::params::packages],
+  }
 }

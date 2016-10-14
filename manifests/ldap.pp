@@ -77,16 +77,8 @@ class sssd::ldap(
     $nsswitch_opts_sudoers = [ 'files' ]
   }
 
-  service { 'oddjobd':
-    ensure  => 'running',
-    enable  => true,
-    require => Service['messagebus'],
-  }
-
-  exec { 'authconfig backup':
-    command => "authconfig --savebackup=${authconfigbackup}",
-    creates => $authconfigbackup,
-    require => [ Package[$sssd::packages] ],
+  class { 'sssd::authconfig::backup':
+    require => Package[$sssd::packages],
   }
 
   file { '/etc/sssd/sssd.conf':
@@ -94,8 +86,8 @@ class sssd::ldap(
     owner   => 'root',
     group   => 'root',
     mode    => '0600',
-    require => Exec['authconfig backup'],
-    notify  => [ Class['sssd::service'], Exec['authconfig enablesssd'] ],
+    require => Class['sssd::authconfig::backup'],
+    notify  => [ Class['sssd::service'], Class['sssd::authconfig::enable'] ],
     content => template("${module_name}/sssdconf-ldap.erb"),
   }
 
@@ -103,7 +95,7 @@ class sssd::ldap(
   {
     exec { 'mkdir openldapcerts':
       command => 'mkdir -p /etc/openldap/cacerts',
-      require => Exec['authconfig backup'],
+      require => Class['sssd::authconfig::backup'],
     }
 
     file { '/etc/openldap/cacerts':
@@ -128,21 +120,19 @@ class sssd::ldap(
       command     => '/usr/sbin/cacertdir_rehash /etc/openldap/cacerts',
       refreshonly => true,
       require     => File['/etc/openldap/cacerts/sssd.ca'],
-      before      => Exec['authconfig enablesssd'],
-      notify      => Exec['authconfig enablesssd'],
+      before      => Class['sssd::authconfig::enable'],
+      notify      => Class['sssd::authconfig::enable'],
     }
   }
 
-  exec { 'authconfig enablesssd':
-    command     => 'authconfig --enablemkhomedir --enablesssd --enablesssdauth --enablelocauthorize --update',
-    require     => [ Service['oddjobd'], File['/etc/sssd/sssd.conf'] ],
-    refreshonly => true,
+  class { 'sssd::authconfig::enable':
+    require => [ Class['sssd::oddjob::service'], File['/etc/sssd/sssd.conf'] ],
   }
 
   class { 'sssd::service':
     ensure  => 'running',
     enable  => true,
-    require => Exec['authconfig enablesssd'],
+    require => Class['sssd::authconfig::enable'],
   }
 
   #passwd shadow group
