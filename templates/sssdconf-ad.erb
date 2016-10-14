@@ -1,0 +1,37 @@
+#
+# puppet managed file
+#
+
+[sssd]
+domains = default
+config_file_version = 2
+services = nss, pam
+#debug_level = 5
+
+[nss]
+filter_groups = root
+filter_users = root
+reconnection_retries = 3
+#debug_level = 5
+
+[pam]
+reconnection_retries = 3
+#debug_level = 5
+
+[domain/default]
+id_provider = ad
+auth_provider = ad
+access_provider = ad
+enumerate = true
+ad_domain = <%= @ad_domain %>
+krb5_realm = <%= @krb5_realm %>
+realmd_tags = manages-system joined-with-adcli
+cache_credentials = True
+krb5_store_password_if_offline = True
+default_shell = /bin/bash
+ldap_id_mapping = False
+ldap_schema = ad
+#ldap_group_name = uniqueMember
+#use_fully_qualified_names = True
+fallback_homedir = /home/%u
+#debug_level = 7

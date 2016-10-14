@@ -12,6 +12,7 @@ filter_users = <%= @filter_users.join(",") %>
 filter_groups = <%= @filter_groups.join(",") %>
 
 [pam]
+reconnection_retries = 3
 
 [domain/default]
 auth_provider = ldap
