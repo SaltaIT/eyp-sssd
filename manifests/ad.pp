@@ -60,7 +60,7 @@ class sssd::ad(
 
   class { 'sssd::ad::join':
     require => Class['sssd::krb5'],
-    notify => Class['sssd::service'],
+    notify  => Class['sssd::service'],
   }
 
 }
