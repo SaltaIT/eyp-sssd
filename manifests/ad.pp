@@ -62,7 +62,4 @@ class sssd::ad(
     require => Class['sssd::krb5'],
   }
 
-
-
-
 }
