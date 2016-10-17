@@ -1,10 +1,11 @@
 class sssd::ad(
-                $filter_users  = [ 'root', 'ldap', 'named', 'avahi', 'haldaemon', 'dbus', 'news', 'nscd' ],
-                $filter_groups = [ 'root' ],
-                $ad_domain     = 'example.com',
-                $krb5_realm    = 'EXAMPLE.COM',
-                $kdc           = 'kerberos.example.com',
-                $admin_server  = 'kerberos.example.com',
+                $filter_users     = [ 'root', 'ldap', 'named', 'avahi', 'haldaemon', 'dbus', 'news', 'nscd' ],
+                $filter_groups    = [ 'root' ],
+                $ad_domain        = 'example.com',
+                $krb5_realm       = 'EXAMPLE.COM',
+                $kdc              = 'kerberos.example.com',
+                $admin_server     = 'kerberos.example.com',
+                $authconfigbackup = '/var/tmp/puppet.authconfig.ldap.backup',
               ) inherits sssd::params {
 
   Exec {
@@ -16,7 +17,8 @@ class sssd::ad(
   }
 
   class { 'sssd::authconfig::backup':
-    require => Package[$sssd::packages],
+    authconfigbackup => $authconfigbackup,
+    require          => Package[$sssd::packages],
   }
 
   file { '/etc/sssd/sssd.conf':
@@ -36,10 +38,10 @@ class sssd::ad(
   }
 
   class { 'nsswitch':
-    passwd  => [ 'files', 'sss' ],
-    shadow  => [ 'files', 'sss' ],
-    group   => [ 'files', 'sss' ],
-    notify  => Class['sssd::service'],
+    passwd => [ 'files', 'sss' ],
+    shadow => [ 'files', 'sss' ],
+    group  => [ 'files', 'sss' ],
+    notify => Class['sssd::service'],
   }
 
   class { 'sssd::authconfig::enable':
