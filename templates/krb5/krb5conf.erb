@@ -17,8 +17,8 @@
 
 [realms]
  <%= @realm %> = {
-  kdc = kerberos.example.com
-  admin_server = kerberos.example.com
+  kdc = <%= @kdc %>
+  admin_server = <%= @admin_server %>
  }
 
 [domain_realm]
