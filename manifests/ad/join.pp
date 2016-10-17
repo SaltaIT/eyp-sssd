@@ -10,7 +10,7 @@ class sssd::ad::join() inherits sssd::ad {
   }
 
   exec { "sssd::ad domain ${ad_domain} join":
-    command => "bash -c 'expect -c \"spawn /usr/sbin/adcli join lifecapnet.com -U test.test -v; expect -re \\\"Password for .*@.*:\\\"; send \\\"123\\\\r\\\"; expect \\\"Found computer account for\\\"; expect EOF\"'",
+    command => "bash -c 'expect -c \"spawn /usr/sbin/adcli join lifecapnet.com -U ${sssd::ad::ad_username} -v; expect -re \\\"Password for .*@.*:\\\"; send \\\"${sssd::ad::ad_password}\\\\r\\\"; expect \\\"Found computer account for\\\"; expect EOF\"; exit $?'",
     #unless => 'klist -kt',
     require => Exec['expect installed'],
   }
