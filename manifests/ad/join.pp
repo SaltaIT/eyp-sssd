@@ -6,14 +6,15 @@ class sssd::ad::join() inherits sssd::ad {
 
   exec { 'expect installed':
     command => 'whereis expect',
-    unless => 'whereis expect',
+    unless  => 'whereis expect',
   }
 
   exec { "sssd::ad domain ${ad_domain} join":
-    command => "bash -c 'echo \"${sssd::ad::ad_password}\" | adcli join ${sssd::ad::ad_domain} -U ${sssd::ad::ad_username} --stdin-password -v'",
-    #unless => 'klist -kt',
+    command => "bash -c 'echo -n \"${sssd::ad::ad_password}\" | adcli join ${sssd::ad::ad_domain} -U ${sssd::ad::ad_username} --stdin-password -v'",
+    unless  => 'klist -kt',
     require => Exec['expect installed'],
   }
+}
 
 #   [root@testad_client ntteam]# adcli join systemadmin.es -U jordi.prats -v
 #  * Using domain name: systemadmin.es
@@ -90,6 +91,3 @@ class sssd::ad::join() inherits sssd::ad {
 #    3 10/17/2016 14:16:43 RestrictedKrbHost/testad_client.systemadmin.es@SYSTEMADMIN.ES
 #    3 10/17/2016 14:16:43 RestrictedKrbHost/testad_client.systemadmin.es@SYSTEMADMIN.ES
 #    3 10/17/2016 14:16:43 RestrictedKrbHost/testad_client.systemadmin.es@SYSTEMADMIN.ES
-
-
-}
