@@ -36,7 +36,7 @@ class sssd::ad(
   class { 'sssd::service':
     ensure  => 'running',
     enable  => true,
-    require => Class['sssd::authconfig::enable'],
+    require => Class[ [ 'sssd::authconfig::enable', 'sssd::ad::join' ] ],
   }
 
   class { 'nsswitch':
@@ -60,6 +60,7 @@ class sssd::ad(
 
   class { 'sssd::ad::join':
     require => Class['sssd::krb5'],
+    notify => Class['sssd::service'],
   }
 
 }
