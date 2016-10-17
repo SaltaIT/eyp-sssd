@@ -10,7 +10,7 @@ class sssd::ad::join() inherits sssd::ad {
   }
 
   exec { "sssd::ad domain ${ad_domain} join":
-    command => "bash -c 'echo ${sssd::ad::ad_password} | adcli join ${sssd::ad::ad_domain} -U ${sssd::ad::ad_username} --stdin-password'",
+    command => "bash -c 'echo \"${sssd::ad::ad_password}\" | adcli join ${sssd::ad::ad_domain} -U ${sssd::ad::ad_username} --stdin-password -v'",
     #unless => 'klist -kt',
     require => Exec['expect installed'],
   }
