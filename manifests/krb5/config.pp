@@ -8,5 +8,4 @@ class sssd::krb5::config inherits krb5 {
     content => template("${module_name}/krb5/krb5conf.erb"),
     require => Package[$sssd::params::packages_ad],
   }
-
 }
