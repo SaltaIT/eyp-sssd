@@ -55,7 +55,11 @@ class sssd::ad(
     kdc          => $kdc,
     admin_server => $admin_server,
     require      => File['/etc/sssd/sssd.conf'],
-    notify       => Class['sssd::service'],
+    notify       => Class[ [ 'sssd::service', 'sssd::authconfig::enable' ] ],
+  }
+
+  class { 'sssd::ad::join':
+    require => Class['sssd::krb5'],
   }
 
 
