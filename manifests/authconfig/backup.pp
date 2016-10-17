@@ -1,4 +1,4 @@
-class sssd::authconfig::backup($authconfigbackup = '/var/tmp/puppet.authconfig.ldap.backup') {
+class sssd::authconfig::backup($authconfigbackup = '/var/tmp/puppet.authconfig.backup') {
 
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',

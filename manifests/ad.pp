@@ -5,7 +5,7 @@ class sssd::ad(
                 $krb5_realm       = 'EXAMPLE.COM',
                 $kdc              = 'kerberos.example.com',
                 $admin_server     = 'kerberos.example.com',
-                $authconfigbackup = '/var/tmp/puppet.authconfig.ldap.backup',
+                $authconfigbackup = '/var/tmp/puppet.authconfig.ad.backup',
               ) inherits sssd::params {
 
   Exec {

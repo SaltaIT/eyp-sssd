@@ -78,7 +78,8 @@ class sssd::ldap(
   }
 
   class { 'sssd::authconfig::backup':
-    require => Package[$sssd::packages],
+    authconfigbackup => $authconfigbackup,
+    require          => Package[$sssd::packages],
   }
 
   file { '/etc/sssd/sssd.conf':
