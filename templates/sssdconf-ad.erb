@@ -9,8 +9,8 @@ services = nss, pam
 #debug_level = 5
 
 [nss]
-filter_groups = root
-filter_users = root
+filter_users = <%= @filter_users.join(",") %>
+filter_groups = <%= @filter_groups.join(",") %>
 reconnection_retries = 3
 #debug_level = 5
 
