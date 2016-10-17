@@ -6,7 +6,7 @@ class sssd::params {
     {
       case $::operatingsystemrelease
       {
-        /^6.*$/:
+        /^[5-7].*$/:
         {
           $packages = [ 'sssd', 'sssd-tools', 'authconfig', 'oddjob-mkhomedir', 'dbus', 'sssd-dbus' ]
           $packages_ad = [ 'adcli' ]
