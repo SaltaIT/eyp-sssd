@@ -6,6 +6,8 @@ class sssd::ad(
                 $kdc              = 'kerberos.example.com',
                 $admin_server     = 'kerberos.example.com',
                 $authconfigbackup = '/var/tmp/puppet.authconfig.ad.backup',
+                $ad_username      = 'Administrator',
+                $ad_password      = 'Secret007!',
               ) inherits sssd::params {
 
   Exec {
@@ -55,6 +57,8 @@ class sssd::ad(
     require      => File['/etc/sssd/sssd.conf'],
     notify       => Class['sssd::service'],
   }
+
+
 
 
 }
