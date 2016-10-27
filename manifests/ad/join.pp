@@ -4,7 +4,7 @@ class sssd::ad::join() inherits sssd::ad {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
   }
 
-  exec { "sssd::ad domain ${sssd::ad:ad_domain} join":
+  exec { "sssd::ad domain ${sssd::ad::ad_domain} join":
     command => "bash -c 'echo -n \"${sssd::ad::ad_password}\" | adcli join ${sssd::ad::ad_domain} -U ${sssd::ad::ad_username} --stdin-password -v'",
     unless  => 'klist -kt',
   }

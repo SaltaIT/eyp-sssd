@@ -1,3 +1,3 @@
-class sssd::krb5::service inherits krb5 {
+class sssd::krb5::service inherits sssd::krb5 {
 
 }
