@@ -10,6 +10,12 @@ class sssd::krb5(
                   $realm                 = 'EXAMPLE.COM',
                   $kdc                   = 'kerberos.example.com',
                   $admin_server          = 'kerberos.example.com',
+                  $ticket_lifetime       = '24h',
+                  $renew_lifetime        = '7d',
+                  $forwardable           = true,
+                  $log_default           = '/var/log/krb5libs.log',
+                  $log_kdc               = '/var/log/krb5kdc.log',
+                  $log_admin_server      = '/var/log/kadmind.log',
                 ) inherits sssd::params {
 
   class { '::sssd::krb5::install': } ->

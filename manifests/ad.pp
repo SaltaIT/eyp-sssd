@@ -8,6 +8,12 @@ class sssd::ad(
                 $authconfigbackup = '/var/tmp/puppet.authconfig.ad.backup',
                 $ad_username      = 'Administrator',
                 $ad_password      = 'Secret007!',
+                $kerberos_ticket_lifetime  = '24h',
+                $kerberos_renew_lifetime   = '7d',
+                $kerberos_forwardable      = true,
+                $kerberos_log_default      = '/var/log/krb5libs.log',
+                $kerberos_log_kdc          = '/var/log/krb5kdc.log',
+                $kerberos_log_admin_server = '/var/log/kadmind.log',
               ) inherits sssd::params {
 
   Exec {
@@ -51,11 +57,17 @@ class sssd::ad(
   }
 
   class { 'sssd::krb5':
-    realm        => $krb5_realm,
-    kdc          => $kdc,
-    admin_server => $admin_server,
-    require      => File['/etc/sssd/sssd.conf'],
-    notify       => Class[ [ 'sssd::service', 'sssd::authconfig::enable' ] ],
+    realm            => $krb5_realm,
+    kdc              => $kdc,
+    admin_server     => $admin_server,
+    ticket_lifetime  => $kerberos_ticket_lifetime,
+    renew_lifetime   => $kerberos_renew_lifetime,
+    forwardable      => $kerberos_forwardable,
+    log_default      => $kerberos_log_default,
+    log_kdc          => $kerberos_log_kdc,
+    log_admin_server => $kerberos_log_admin_server,
+    require          => File['/etc/sssd/sssd.conf'],
+    notify           => Class[ [ 'sssd::service', 'sssd::authconfig::enable' ] ],
   }
 
   class { 'sssd::ad::join':
