@@ -19,19 +19,22 @@ reconnection_retries = 3
 #debug_level = 5
 
 [domain/default]
+ldap_schema = ad
 id_provider = ad
 auth_provider = ad
 access_provider = ad
-enumerate = true
+enumerate = <%= @enumerate %>
 ad_domain = <%= @ad_domain %>
 krb5_realm = <%= @krb5_realm %>
 realmd_tags = manages-system joined-with-adcli
-cache_credentials = True
-krb5_store_password_if_offline = True
-default_shell = /bin/bash
-ldap_id_mapping = False
-ldap_schema = ad
+cache_credentials = <%= @cache_credentials %>
+krb5_store_password_if_offline = <%= @krb5_store_password_if_offline %>
+default_shell = <%= @default_shell %>
+fallback_homedir = <%= @fallback_homedir %>
+ldap_id_mapping = <%= @ldap_id_mapping %>
+<% if defined?(@ldap_user_name) -%>
+ldap_user_name = <%= @ldap_user_name %>
+<% end -%>
 #ldap_group_name = uniqueMember
 #use_fully_qualified_names = True
-fallback_homedir = /home/%u
 #debug_level = 7
