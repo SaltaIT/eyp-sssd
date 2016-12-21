@@ -17,21 +17,25 @@
 
 ## Overview
 
-Setups AD/LDAP authentication using sssd
+Setups AD/LDAP authentication using **sssd**
 
 ## Module Description
 
-Setups AD/LDAP authentication, and optionally ssh keys on LDAP and sudo on LDAP
+Setups AD/LDAP authentication, and optionally ssh keys and sudo on LDAP
 
 ## Setup
 
 ### What sssd affects
 
-* Manages /etc/nsswitch.conf using **eyp/nsswitch**
+* Uses **eyp/nsswitch** to manage /etc/nsswitch.conf
+* Manages:
+ * sssd
+ * oddjob
+ * For AD it can optionally manage **/etc/krb5.conf**
 
 ### Setup Requirements
 
-This module requires pluginsync enabled and eyp/nsswitch module installed
+This module requires pluginsync enabled and **eyp/nsswitch** module installed
 
 ### Beginning with sssd
 
@@ -119,9 +123,12 @@ sssd::ad::filter_users:
 * **sssd::ldap::ldap_network_timeout**: Specifies the timeout (in seconds) that ldap searches for user and group enumerations are allowed to run before they are cancelled and cached results are returned (default: 3)
 * **sssd::ldap::enumerate**: Determines if a domain can be enumerated (default: true)
 * **sssd::ldap::ldap_id_use_start_tls**: Specifies that the id_provider connection must also use tls to protect the channel. (default: false)
-* **sssd::ldap::ldap_access_filter**:
-  $ldap_access_filter = memberOf=cn=...
-  $ldap_access_filter = (|(memberOf=cn=...)(memberOf=cn=...)...)
+* **sssd::ldap::ldap_access_filter**: (default: undef)
+  examples:
+  ```yaml
+  sssd::ldap::ldap_access_filter: 'memberOf=cn=...'
+  sssd::ldap::ldap_access_filter: '(|(memberOf=cn=...)(memberOf=cn=...)...)'
+  ```
 
 ## Reference
 

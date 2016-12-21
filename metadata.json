@@ -4,9 +4,9 @@
   "author": "eyp",
   "summary": "manages sssd for ldap and AD authentication",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/NTTCom-MS/eyp-sssd",
   "project_page": "http://systemadmin.es",
-  "issues_url": null,
+  "issues_url": "https://github.com/NTTCom-MS/eyp-sssd/issues",
   "dependencies": [
     {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0"},
     {"version_requirement":">= 0.1.0","name":"eyp/nsswitch"},
