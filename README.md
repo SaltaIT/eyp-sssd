@@ -73,7 +73,7 @@ sssd::ldap::ldap_schema: rfc2307
 ```
 AD:
 
-```hiera
+```yaml
 ---
 classes:
   - sssd
