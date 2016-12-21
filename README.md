@@ -1,4 +1,4 @@
-# sssd ![status ready](https://img.shields.io/badge/status-ready-brightgreen.svg)
+# sssd ![status ready](https://img.shields.io/badge/status-ready-brightgreen.svg) ![doc missing](https://img.shields.io/badge/doc-missing-red.svg)
 
 [![PRs Welcome](https://img.shields.io/badge/prs-welcome-brightgreen.svg)]
 
@@ -106,6 +106,28 @@ sssd::ldap::ldap_schema: rfc2307
 
 #### sssd::ad
 
+* filter_users                   = [ 'root', 'ldap', 'named', 'avahi', 'haldaemon', 'dbus', 'news', 'nscd' ],
+* filter_groups                  = [ 'root' ],
+* ad_domain                      = 'example.com',
+* krb5_realm                     = 'EXAMPLE.COM',
+* kdc                            = 'kerberos.example.com',
+* admin_server                   = 'kerberos.example.com',
+* authconfigbackup               = '/var/tmp/puppet.authconfig.ad.backup',
+* ad_username                    = 'Administrator',
+* ad_password                    = 'Secret007!',
+* kerberos_ticket_lifetime       = '24h',
+* kerberos_renew_lifetime        = '7d',
+* kerberos_forwardable           = true,
+* kerberos_log_default           = '/var/log/krb5libs.log',
+* kerberos_log_kdc               = '/var/log/krb5kdc.log',
+* kerberos_log_admin_server      = '/var/log/kadmind.log',
+* ldap_id_mapping                = false,
+* default_shell                  = '/bin/bash',
+* enumerate                      = true,
+* cache_credentials              = true,
+* krb5_store_password_if_offline = true,
+* fallback_homedir               = '/home/%u',
+* ldap_user_name                 = undef,
 * ad_access_filter (default: undef)
   ```
       This option specifies LDAP access control filter that the user must match in order to be allowed access. Please note that the
@@ -132,6 +154,10 @@ sssd::ldap::ldap_schema: rfc2307
 
           # apply filter on forest called EXAMPLE.COM only:
           FOREST:EXAMPLE.COM:(memberOf=cn=admins,ou=groups,dc=example,dc=com)
+  ```
+  multiple groups:
+  ```
+    ad_access_filter = DOM:domain.com:(|(memberOf:1.2.840.113556.1.4.1941:=CN=IO Network Admins,OU=Distribution Groups,OU=Managed Objects,DC=domain,DC=com)(memberOf:1.2.840.113556.1.4.1941:=CN=ISTUnix,OU=Security Groups,OU=Managed Objects,DC=domain,DC=com))
   ```
 
 #### sssd::ldap
