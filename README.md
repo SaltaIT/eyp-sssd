@@ -1,4 +1,4 @@
-# sssd ![status ready](https://img.shields.io/badge/status-ready-brightgreen.svg) ![doc missing](https://img.shields.io/badge/doc-missing-red.svg)
+# sssd ![status ready](https://img.shields.io/badge/status-ready-brightgreen.svg) ![doc missing](https://img.shields.io/badge/doc-partial-yellow.svg)
 
 [![PRs Welcome](https://img.shields.io/badge/prs-welcome-brightgreen.svg)]
 
