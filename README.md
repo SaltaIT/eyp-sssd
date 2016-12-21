@@ -16,13 +16,11 @@
 
 ## Overview
 
-Setups LDAP authentication using sssd
-
-This documentation has reviewed up to version 0.1.50.
+Setups AD/LDAP authentication using sssd
 
 ## Module Description
 
-Setups LDAP authentication, and optionally ssh keys on LDAP and sudo on LDAP
+Setups AD/LDAP authentication, and optionally ssh keys on LDAP and sudo on LDAP
 
 ## Setup
 
@@ -73,7 +71,31 @@ sssd::ldap::sshkeys: false
 sssd::ldap::ldap_group_member: memberuid
 sssd::ldap::ldap_schema: rfc2307
 ```
+AD:
 
+```hiera
+---
+classes:
+  - sssd
+  - sssd::ad
+sssd::ad::ldap_user_name: 'sAMAccountName'
+sssd::ad::ldap_id_mapping: true
+sssd::ad::ad_domain: 'systemadmin.es'
+sssd::ad::ad_username: 'adminuser'
+sssd::ad::ad_password: 'secret'
+sssd::ad::krb5_realm: 'systemadmin.es'
+sssd::ad::kdc: 'SLDC01.systemadmin.es'
+sssd::ad::admin_server: 'SLDC01.systemadmin.es'
+sssd::ad::filter_users:
+  - 'root'
+  - 'ldap'
+  - 'named'
+  - 'avahi'
+  - 'haldaemon'
+  - 'dbus'
+  - 'news'
+  - 'nscd'
+```
 ## Usage
 
 * **sssd::ldap::ldap_uri**: read-only queries
