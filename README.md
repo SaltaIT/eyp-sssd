@@ -301,4 +301,5 @@ sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsuZuQx/DDMFsGjXCdT/qMjqvRR2
 
 ## Limitations
 
-Tested in CentOS 6
+**sssd::ldap**: Tested on CentOS 6
+**sssd::ad**: tested on CentOS 6 and CentOS 7
