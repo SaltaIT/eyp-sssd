@@ -38,3 +38,6 @@ ldap_user_name = <%= @ldap_user_name %>
 #ldap_group_name = uniqueMember
 #use_fully_qualified_names = True
 #debug_level = 7
+<% if defined?(@ad_access_filter) -%>
+ad_access_filter = <%= @ad_access_filter %>
+<% end -%>

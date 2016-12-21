@@ -104,6 +104,36 @@ sssd::ldap::ldap_schema: rfc2307
 
 ### classes
 
+#### sssd::ad
+
+* ad_access_filter (default: undef)
+  ```
+      This option specifies LDAP access control filter that the user must match in order to be allowed access. Please note that the
+      “access_provider” option must be explicitly set to “ad” in order for this option to have an effect.
+
+      The option also supports specifying different filters per domain or forest. This extended filter would consist of:
+      “KEYWORD:NAME:FILTER”. The keyword can be either “DOM”, “FOREST” or missing.
+
+      If the keyword equals to “DOM” or is missing, then “NAME” specifies the domain or subdomain the filter applies to. If the keyword
+      equals to “FOREST”, then the filter equals to all domains from the forest specified by “NAME”.
+
+      Multiple filters can be separated with the “?”  character, similarly to how search bases work.
+
+      The most specific match is always used. For example, if the option specified filter for a domain the user is a member of and a global
+      filter, the per-domain filter would be applied. If there are more matches with the same specification, the first one is used.
+
+      Examples:
+
+          # apply filter on domain called dom1 only:
+          dom1:(memberOf=cn=admins,ou=groups,dc=dom1,dc=com)
+
+          # apply filter on domain called dom2 only:
+          DOM:dom2:(memberOf=cn=admins,ou=groups,dc=dom2,dc=com)
+
+          # apply filter on forest called EXAMPLE.COM only:
+          FOREST:EXAMPLE.COM:(memberOf=cn=admins,ou=groups,dc=example,dc=com)
+  ```
+
 #### sssd::ldap
 
 **WARNING**: rewrite in progress, untested

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.18
+
+* added ad_access_filter for sssd::ad
+
 ## 0.2.17
 
 * lint

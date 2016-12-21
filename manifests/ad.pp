@@ -21,6 +21,7 @@ class sssd::ad(
                 $krb5_store_password_if_offline = true,
                 $fallback_homedir               = '/home/%u',
                 $ldap_user_name                 = undef,
+                $ad_access_filter               = undef,
               ) inherits sssd::params {
 
   Exec {
