@@ -6,17 +6,23 @@
 domains = default
 config_file_version = 2
 services = nss, pam
-#debug_level = 5
+<% if defined?(@sssd_debug_level) -%>
+debug_level = <%= @sssd_debug_level -%>
+<% end -%>
 
 [nss]
 filter_users = <%= @filter_users.join(",") %>
 filter_groups = <%= @filter_groups.join(",") %>
 reconnection_retries = 3
-#debug_level = 5
+<% if defined?(@nss_debug_level) -%>
+debug_level = <%= @nss_debug_level %>
+<% end -%>
 
 [pam]
 reconnection_retries = 3
-#debug_level = 5
+<% if defined?(@pam_debug_level) -%>
+debug_level = <%= @pam_debug_level %>
+<% end -%>
 
 [domain/default]
 ldap_schema = ad
@@ -37,7 +43,9 @@ ldap_user_name = <%= @ldap_user_name %>
 <% end -%>
 #ldap_group_name = uniqueMember
 #use_fully_qualified_names = True
-#debug_level = 7
 <% if defined?(@ad_access_filter) -%>
 ad_access_filter = <%= @ad_access_filter %>
+<% end -%>
+<% if defined?(@domain_debug_level) -%>
+debug_level = <%= @domain_debug_level %>
 <% end -%>

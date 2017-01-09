@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.2.19
+
+* added debug options:
+  * **sssd_debug_level**
+  * **nss_debug_level**
+  * **pam_debug_level**
+  * **domain_debug_level**
+
 ## 0.2.18
 
 * added ad_access_filter for sssd::ad
