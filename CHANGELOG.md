@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.20
+
+* added **ldap_access_filter** to **sssd::ad**
+
 ## 0.2.19
 
 * added debug options:
