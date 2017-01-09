@@ -22,7 +22,6 @@ class sssd::ad(
                 $fallback_homedir               = '/home/%u',
                 $ldap_user_name                 = undef,
                 $ad_access_filter               = undef,
-                $ldap_access_filter             = undef,
                 $sssd_debug_level               = undef,
                 $nss_debug_level                = undef,
                 $pam_debug_level                = undef,
