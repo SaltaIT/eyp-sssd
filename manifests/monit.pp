@@ -4,6 +4,8 @@ class sssd::monit(
                     $ensure      = 'present',
                   ) inherits sssd::params {
 
+  # falta acceptance testing
+
   file { "${basedir}/${script_name}":
     ensure  => $ensure,
     owner   => 'root',
