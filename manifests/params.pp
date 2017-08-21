@@ -4,6 +4,7 @@ class sssd::params {
   {
     'redhat':
     {
+      $monit_sudo_user_default='nrpe'
       case $::operatingsystemrelease
       {
         /^[5-7].*$/:

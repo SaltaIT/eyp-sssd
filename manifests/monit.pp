@@ -5,6 +5,8 @@ class sssd::monit(
                     $file_mode   = '0750',
                     $basedir     = '/usr/local/bin',
                     $script_name = 'check_sssd_user',
+                    $add_sudo    = true,
+                    $sudo_user   = $sssd::params::monit_sudo_user_default,
                   ) inherits sssd::params {
 
   # falta acceptance testing
@@ -17,11 +19,11 @@ class sssd::monit(
     content => file("${module_name}/check_sssd_user.sh"),
   }
 
-  if(defined(Class['sudoers']))
+  if($add_sudo)
   {
-    sudoers::sudo { "sudo root ${basedir}/${script_name}":
+    sudoers::sudo { "sudo $sudo_user ${basedir}/${script_name}":
       ensure   => $ensure,
-      username => 'root',
+      username => $sudo_user,
       command  => "${basedir}/${script_name}",
     }
   }
