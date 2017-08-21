@@ -10,7 +10,7 @@ class sssd::monit(
     ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
-    mode    => '0751',
+    mode    => '0750',
     content => file("${module_name}/check_sssd_user.sh"),
   }
 }
