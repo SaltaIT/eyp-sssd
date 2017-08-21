@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.20
+
+* added **sssd::monit** class to deploy **check_sssd_user** check
+
 ## 0.2.19
 
 * added debug options:
