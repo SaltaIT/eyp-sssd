@@ -23,9 +23,10 @@ class sssd::monit(
   if($add_sudo)
   {
     sudoers::sudo { "sudo $sudo_user ${basedir}/${script_name}":
-      ensure   => $ensure,
-      username => $sudo_user,
-      command  => "${basedir}/${script_name}",
+      ensure          => $ensure,
+      username        => $sudo_user,
+      withoutpassword => true,
+      command         => "${basedir}/${script_name}",
     }
   }
 }
