@@ -10,6 +10,7 @@ class sssd::monit(
                   ) inherits sssd::params {
 
   # falta acceptance testing
+  include ::sudoers
 
   file { "${basedir}/${script_name}":
     ensure  => $ensure,
