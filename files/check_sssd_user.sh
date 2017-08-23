@@ -70,7 +70,7 @@ then
       exit 0
     fi
   else
-    echo "ERROR inconsistent user info for ${SSSD_USER}"
+    echo "ERROR: inconsistent user info for ${SSSD_USER}"
     exit 2
   fi
 else
