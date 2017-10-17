@@ -10,7 +10,7 @@ class sssd::ad::join() inherits sssd::ad {
   }
 }
 
-#   [root@testad_client ntteam]# adcli join systemadmin.es -U jordi.prats -v
+#   [root@testad_client saltait]# adcli join systemadmin.es -U jordi.prats -v
 #  * Using domain name: systemadmin.es
 #  * Calculated computer account name from fqdn: TESTAD
 #  * Calculated domain realm from name: SYSTEMADMIN.ES
@@ -51,7 +51,7 @@ class sssd::ad::join() inherits sssd::ad {
 #  * Added the entries to the keytab: HOST/testad_client.systemadmin.es@SYSTEMADMIN.ES: FILE:/etc/krb5.keytab
 #  * Added the entries to the keytab: RestrictedKrbHost/TESTAD@SYSTEMADMIN.ES: FILE:/etc/krb5.keytab
 #  * Added the entries to the keytab: RestrictedKrbHost/testad_client.systemadmin.es@SYSTEMADMIN.ES: FILE:/etc/krb5.keytab
-# [root@testad_client ntteam]# klist -kt
+# [root@testad_client saltait]# klist -kt
 # Keytab name: FILE:/etc/krb5.keytab
 # KVNO Timestamp           Principal
 # ---- ------------------- ------------------------------------------------------
