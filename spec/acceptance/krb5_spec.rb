@@ -8,6 +8,7 @@ describe 'netplan class' do
     it 'should work with no errors' do
       pp = <<-EOF
 
+      class { 'sssd::ad': }
       class { 'sssd::krb5': }
 
       EOF
