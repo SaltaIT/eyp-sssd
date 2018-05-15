@@ -39,14 +39,10 @@ RSpec.configure do |c|
 
     hosts.each do |host|
       # dependencies
-      # {"name":"puppetlabs/stdlib", "version_requirement":">= 1.0.0 < 9.9.9"},
-      # {"name":"eyp/nsswitch", "version_requirement":">= 0.1.0 < 0.2.0"},
-      # {"name":"eyp/sudoers", "version_requirement":">= 0.1.23 < 0.2.0"},
-      # {"name":"eyp/eyplib", "version_requirement":">= 0.1.0 < 0.2.0"}
+      on host, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
       on host, puppet('module', 'install', 'eyp-eyplib'), { :acceptable_exit_codes => [0,1] }
       on host, puppet('module', 'install', 'eyp-sudoers'), { :acceptable_exit_codes => [0,1] }
       on host, puppet('module', 'install', 'eyp-nsswitch'), { :acceptable_exit_codes => [0,1] }
-      on host, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
     end
   end
 end
