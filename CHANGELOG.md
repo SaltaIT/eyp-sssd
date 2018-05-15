@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.2.21
+
+* **sssd::krb5**
+  - allow multiple KDC
+  - added **master_kdc** variable
+
 ## 0.2.20
 
 * added **sssd::monit** class to deploy **check_sssd_user** check

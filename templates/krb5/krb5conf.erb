@@ -17,7 +17,16 @@
 
 [realms]
  <%= @realm %> = {
+  <%- if @kdc.kind_of?(Array) -%>
+  <%- @kdc.each do |val| -%>
+  kdc = <%= val %>
+  <%- end -%>
+  <%- else -%>
   kdc = <%= @kdc %>
+  <%- end -%>
+  <%- if defined?(@master_kdc) -%>
+  master_kdc = <%= @master_kdc %>
+  <%- end -%>
   admin_server = <%= @admin_server %>
  }
 

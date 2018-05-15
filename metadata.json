@@ -1,6 +1,6 @@
 {
   "name": "eyp-sssd",
-  "version": "0.2.20",
+  "version": "0.2.21",
   "author": "eyp",
   "summary": "manages sssd for ldap and AD authentication",
   "license": "Apache-2.0",
@@ -33,6 +33,12 @@
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [ "5", "6", "7" ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 3.8.0"
     }
   ]
 }
