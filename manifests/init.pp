@@ -1,5 +1,5 @@
 #
-class sssd () inherits sssd::params {
+class sssd inherits sssd::params {
 
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',

@@ -28,6 +28,8 @@ class sssd::ad(
                 $domain_debug_level             = undef,
               ) inherits sssd::params {
 
+  include ::sssd
+
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
   }
