@@ -141,8 +141,8 @@ sssd::ad::filter_users:
 * **ad_domain**                      = 'example.com',
 * **krb5_realm**                     = 'EXAMPLE.COM',
 * **kdc**: Either a string or a string array (default: kerberos.example.com)
-* **master_kdc**:                     = undef,
-* **default_domain**:                 = undef,
+* **master_kdc**:                    = undef,
+* **default_domain**:                = undef,
 * **admin_server**                   = 'kerberos.example.com',
 * **authconfigbackup**               = '/var/tmp/puppet.authconfig.ad.backup',
 * **ad_username**                    = 'Administrator',
