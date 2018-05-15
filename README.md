@@ -134,6 +134,27 @@ sssd::ad::filter_users:
 
 ### classes
 
+#### sssd::krb5
+
+* **manage_package**:        = true,
+* **package_ensure**:        = 'installed',
+* **manage_service**:        = true,
+* **manage_docker_service**: = true,
+* **service_ensure**:        = 'running',
+* **service_enable**:        = true,
+* **dns_lookup_realm**:      = true,
+* **dns_lookup_kdc**:        = true,
+* **realm**:                 = 'EXAMPLE.COM',
+* **kdc**: Either a string or an Array default: ([ 'kerberos.example.com' ])
+* **admin_server**:          = 'kerberos.example.com',
+* **master_kdc**:            = undef,
+* **ticket_lifetime**:       = '24h',
+* **renew_lifetime**:        = '7d',
+* **forwardable**:           = true,
+* **log_default**:           = '/var/log/krb5libs.log',
+* **log_kdc**:               = '/var/log/krb5kdc.log',
+* **log_admin_server**:      = '/var/log/kadmind.log',
+
 #### sssd::ad
 
 * **sssd::ad::filter_users**                   = [ 'root', 'ldap', 'named', 'avahi', 'haldaemon', 'dbus', 'news', 'nscd' ],
