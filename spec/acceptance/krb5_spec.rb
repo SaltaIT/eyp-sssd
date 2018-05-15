@@ -8,7 +8,9 @@ describe 'netplan class' do
     it 'should work with no errors' do
       pp = <<-EOF
 
-      class { 'sssd::ad': }
+      class { 'sssd::ad':
+        kdc => [ 'a.saltait.com', 'b.saltaitt.com' ],
+      }
 
       EOF
 
