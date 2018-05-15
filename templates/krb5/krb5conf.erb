@@ -27,6 +27,9 @@
   <%- if defined?(@master_kdc) -%>
   master_kdc = <%= @master_kdc %>
   <%- end -%>
+  <%- if defined?(@default_domain) -%>
+  default_domain = <%= @default_domain %>
+  <%- end -%>
   admin_server = <%= @admin_server %>
  }
 

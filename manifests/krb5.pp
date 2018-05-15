@@ -11,6 +11,7 @@ class sssd::krb5(
                   $kdc                   = [ 'kerberos.example.com' ],
                   $admin_server          = 'kerberos.example.com',
                   $master_kdc            = undef,
+                  $default_domain        = undef,
                   $ticket_lifetime       = '24h',
                   $renew_lifetime        = '7d',
                   $forwardable           = true,
