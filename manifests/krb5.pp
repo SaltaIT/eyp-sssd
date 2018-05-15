@@ -1,3 +1,4 @@
+# private subclass, do not use
 class sssd::krb5(
                   $manage_package        = true,
                   $package_ensure        = 'installed',

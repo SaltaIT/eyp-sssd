@@ -134,52 +134,33 @@ sssd::ad::filter_users:
 
 ### classes
 
-#### sssd::krb5
-
-* **manage_package**:        = true,
-* **package_ensure**:        = 'installed',
-* **manage_service**:        = true,
-* **manage_docker_service**: = true,
-* **service_ensure**:        = 'running',
-* **service_enable**:        = true,
-* **dns_lookup_realm**:      = true,
-* **dns_lookup_kdc**:        = true,
-* **realm**:                 = 'EXAMPLE.COM',
-* **kdc**: Either a string or an Array default: ([ 'kerberos.example.com' ])
-* **admin_server**:          = 'kerberos.example.com',
-* **master_kdc**:            = undef,
-* **ticket_lifetime**:       = '24h',
-* **renew_lifetime**:        = '7d',
-* **forwardable**:           = true,
-* **log_default**:           = '/var/log/krb5libs.log',
-* **log_kdc**:               = '/var/log/krb5kdc.log',
-* **log_admin_server**:      = '/var/log/kadmind.log',
-
 #### sssd::ad
 
-* **sssd::ad::filter_users**                   = [ 'root', 'ldap', 'named', 'avahi', 'haldaemon', 'dbus', 'news', 'nscd' ],
-* **sssd::ad::filter_groups**                  = [ 'root' ],
-* **sssd::ad::ad_domain**                      = 'example.com',
-* **sssd::ad::krb5_realm**                     = 'EXAMPLE.COM',
-* **sssd::ad::kdc**                            = 'kerberos.example.com',
-* **sssd::ad::admin_server**                   = 'kerberos.example.com',
-* **sssd::ad::authconfigbackup**               = '/var/tmp/puppet.authconfig.ad.backup',
-* **sssd::ad::ad_username**                    = 'Administrator',
-* **sssd::ad::ad_password**                    = 'Secret007!',
-* **sssd::ad::kerberos_ticket_lifetime**       = '24h',
-* **sssd::ad::kerberos_renew_lifetime**        = '7d',
-* **sssd::ad::kerberos_forwardable**           = true,
-* **sssd::ad::kerberos_log_default**           = '/var/log/krb5libs.log',
-* **sssd::ad::kerberos_log_kdc**               = '/var/log/krb5kdc.log',
-* **sssd::ad::kerberos_log_admin_server**      = '/var/log/kadmind.log',
-* **sssd::ad::ldap_id_mapping**                = false,
-* **sssd::ad::default_shell**                  = '/bin/bash',
-* **sssd::ad::enumerate**                      = true,
-* **sssd::ad::cache_credentials**              = true,
-* **sssd::ad::krb5_store_password_if_offline** = true,
-* **sssd::ad::fallback_homedir**               = '/home/%u',
-* **sssd::ad::ldap_user_name**                 = undef,
-* **sssd::ad::ad_access_filter** (default: undef)
+* **filter_users**                   = [ 'root', 'ldap', 'named', 'avahi', 'haldaemon', 'dbus', 'news', 'nscd' ],
+* **filter_groups**                  = [ 'root' ],
+* **ad_domain**                      = 'example.com',
+* **krb5_realm**                     = 'EXAMPLE.COM',
+* **kdc**: Either a string or a string array (default: kerberos.example.com)
+* **master_kdc**:                     = undef,
+* **default_domain**:                 = undef,
+* **admin_server**                   = 'kerberos.example.com',
+* **authconfigbackup**               = '/var/tmp/puppet.authconfig.ad.backup',
+* **ad_username**                    = 'Administrator',
+* **ad_password**                    = 'Secret007!',
+* **kerberos_ticket_lifetime**       = '24h',
+* **kerberos_renew_lifetime**        = '7d',
+* **kerberos_forwardable**           = true,
+* **kerberos_log_default**           = '/var/log/krb5libs.log',
+* **kerberos_log_kdc**               = '/var/log/krb5kdc.log',
+* **kerberos_log_admin_server**      = '/var/log/kadmind.log',
+* **ldap_id_mapping**                = false,
+* **default_shell**                  = '/bin/bash',
+* **enumerate**                      = true,
+* **cache_credentials**              = true,
+* **krb5_store_password_if_offline** = true,
+* **fallback_homedir**               = '/home/%u',
+* **ldap_user_name**                 = undef,
+* **ad_access_filter** (default: undef)
   ```
       This option specifies LDAP access control filter that the user must match in order to be allowed access. Please note that the
       “access_provider” option must be explicitly set to “ad” in order for this option to have an effect.
