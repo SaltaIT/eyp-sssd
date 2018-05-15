@@ -9,7 +9,6 @@ describe 'netplan class' do
       pp = <<-EOF
 
       class { 'sssd::ad': }
-      class { 'sssd::krb5': }
 
       EOF
 

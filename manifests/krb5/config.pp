@@ -6,6 +6,6 @@ class sssd::krb5::config inherits sssd::krb5 {
     group   => 'root',
     mode    => '0644',
     content => template("${module_name}/krb5/krb5conf.erb"),
-    require => Class['::sssd::ad'],
+    require => Package[$sssd::params::packages_ad],
   }
 }
