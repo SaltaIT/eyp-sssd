@@ -2,6 +2,7 @@
 
 ## 0.3.0
 
+* Added domain_ou option to **sssd::ad::join**
 * INCOMPATIBLE CHANGE:
   - rework class **sssd::ad::join**
 
