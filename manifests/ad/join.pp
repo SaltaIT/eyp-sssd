@@ -2,7 +2,7 @@ class sssd::ad::join(
                       $ad_username,
                       $ad_password,
                       $ad_domain,
-                      $domain_ou = undef,
+                      $ad_computer_ou = undef,
                     ) inherits sssd::ad {
 
   Exec {
