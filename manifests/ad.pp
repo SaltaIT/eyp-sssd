@@ -89,8 +89,11 @@ class sssd::ad(
   }
 
   class { 'sssd::ad::join':
-    require => Class['sssd::krb5'],
-    notify  => Class['sssd::service'],
+    ad_username => $ad_username,
+    ad_password => $ad_password,
+    ad_domain   => $ad_domain,
+    require     => Class['sssd::krb5'],
+    notify      => Class['sssd::service'],
   }
 
 }

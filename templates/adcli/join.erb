@@ -1,0 +1,1 @@
+bash -c 'echo -n \"<%= @ad_password %>\" | adcli join<% if defined?(@domain_ou) %> --domain_ou=<%= @domain_ou %><% end %> <%= @ad_domain %> -U <%= @ad_username %> --stdin-password -v'

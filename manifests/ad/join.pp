@@ -1,11 +1,17 @@
-class sssd::ad::join() inherits sssd::ad {
+class sssd::ad::join(
+                      $ad_username,
+                      $ad_password,
+                      $ad_domain,
+                      $domain_ou = undef,
+                    ) inherits sssd::ad {
 
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
   }
 
-  exec { "sssd::ad domain ${sssd::ad::ad_domain} join":
-    command => "bash -c 'echo -n \"${sssd::ad::ad_password}\" | adcli join ${sssd::ad::ad_domain} -U ${sssd::ad::ad_username} --stdin-password -v'",
+  #command => "bash -c 'echo -n \"${sssd::ad::ad_password}\" | adcli join ${sssd::ad::ad_domain} -U ${sssd::ad::ad_username} --stdin-password -v'",
+  exec { "sssd::ad domain ${ad_domain} join":
+    command => template("${module_name}/adcli/join.erb"),
     unless  => 'klist -kt',
   }
 }
