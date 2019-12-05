@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.1
+
+* bugfix: ad join
+
 ## 0.3.0
 
 * Added **ad_computer_ou** option to **sssd::ad::join**
