@@ -1,1 +1,1 @@
-bash -c 'echo -n \"<%= @ad_password %>\" | adcli join -D <%= @ad_domain %><% if defined?(@ad_computer_ou) %> -O \"<%= @ad_computer_ou %>\"<% end %> -U <%= @ad_username %> --stdin-password -v'
+bash -c 'echo -n <%= @ad_password %> | adcli join -D <%= @ad_domain %><% if defined?(@ad_computer_ou) %> -O \"<%= @ad_computer_ou %>\"<% end %> -U <%= @ad_username %> --stdin-password -v'
