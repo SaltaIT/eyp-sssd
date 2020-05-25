@@ -9,7 +9,7 @@ class sssd::params {
       {
         /^[5-7].*$/:
         {
-          $packages = [ 'sssd', 'sssd-tools', 'authconfig', 'oddjob-mkhomedir', 'dbus', 'sssd-dbus' ]
+          $packages = [ 'sssd', 'authconfig', 'oddjob-mkhomedir', 'dbus', 'sssd-dbus' ]
           $packages_ad = [ 'adcli' ]
           $packages_krb5 = [ 'krb5-workstation' ]
         }
