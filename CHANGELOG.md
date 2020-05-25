@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.2
+
+* removed sssd-tools as a mandatory dependency
+
 ## 0.3.1
 
 * bugfix: ad join
