@@ -1,7 +1,7 @@
 {
   "name": "eyp-sssd",
   "version": "0.3.2",
-  "author": "eyp",
+  "author": "Jordi Prats",
   "summary": "manages sssd for ldap and AD authentication",
   "license": "Apache-2.0",
   "source": "https://github.com/SaltaIT/eyp-sssd",
